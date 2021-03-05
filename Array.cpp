@@ -119,8 +119,11 @@ T & Array <T>::operator [] (size_t index)
 template <typename T>
 const T & Array <T>::operator [] (size_t index) const
 {
-    T return_var = this[index];
-    return return_var;
+    if (cur_size_ <= index) {
+        throw std::out_of_range("std::out_of_range: The index passed in is greater than the size of the array.");
+    } else {
+        return data_[index];
+    } // end if-else
 } // end operator [] for access
 
 

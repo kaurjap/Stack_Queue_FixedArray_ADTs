@@ -26,7 +26,7 @@ Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
     // *this = arr;
 
 	for (size_t i = 0; i < N; i++) {
-        this[i] = arr.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
+        (*this)[i] = arr[i];         
     } // end for
 } // end copy constructor (same sized arrays)
 
@@ -53,7 +53,7 @@ Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, M> & arr)
         upper_bound = M;
     } // end if
 	for (size_t i = 0; i < upper_bound; i++) {
-        data_[i] = arr.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
+        (*this)[i] = arr[i];          
     } // end for
 } // end initialization constructor (different sized arrays)
 
@@ -84,9 +84,10 @@ template <typename T, size_t N>
 const Fixed_Array <T, N> & Fixed_Array <T, N>::operator = (const Fixed_Array <T, N> & rhs)
 {
 	for (size_t i = 0; i < N; i++) {
-        data_[i] = rhs.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
+        (*this)[i] = rhs[i];           
     } // end for
-} // end operator = (s ame as copy constuctor)
+    return *this;
+} // end operator = (same as copy constuctor)
 
 //
 // operator =
@@ -101,6 +102,7 @@ const Fixed_Array <T, N> & Fixed_Array <T, N>::operator = (const Fixed_Array <T,
         upper_bound = M;
     } // end if
 	for (size_t i = 0; i < upper_bound; i++) {
-        data_[i] = rhs.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
+        (*this)[i] = rhs[i];          
     } // end for
+    return *this;
 } // end operator = (same as different size initialization)
