@@ -13,12 +13,13 @@
 #ifndef _CS507_STACK_H_
 #define _CS507_STACK_H_
 
+#include "Array.h"
 #include <exception>
 
 /**
  * @class Stack
  *
- * Basic stack for abitrary elements.
+ * Basic stack for arbitrary elements.
  */
 template <typename T>
 class Stack
@@ -108,7 +109,10 @@ public:
   void clear (void);
 
 private:
-  // add member variable here
+
+  // aggregation
+  Array <T*> array_;  // pointer that points to the data on the stack
+
 };
 
 // include the inline files
