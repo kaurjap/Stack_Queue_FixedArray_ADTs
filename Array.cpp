@@ -40,7 +40,7 @@ Array <T>::Array (size_t length, T fill)
     cur_size_ (length),
     max_size_ (length)
 {
-    fill(fill);
+    this->fill (fill);          // TRY: changing the parameter name "fill" (inconsistency with using this)
 } // end initialization constructor
 
 //
@@ -122,7 +122,11 @@ const T & Array <T>::operator [] (size_t index) const
 template <typename T>
 T Array <T>::get (size_t index) const
 {
-    return this[index];
+    if (cur_size_ <= index) {
+        throw std::out_of_range("std::out_of_range: The index passed in is greater than the size of the array.");
+    } else {
+        return data_[index];
+    } // end if-else
 } // end get
 
 //
