@@ -260,23 +260,52 @@ void Array <T>::fill (T value)
 
 template <typename T>
 void Array <T>::shrink (void) {
-
+    if (cur_size_ < max_size_) {
+        T * newArray = new T [cur_size_];
+        for (size_t i = 0; i < cur_size_; i++) {
+            newArray[i] = data_[i];
+        } // end for
+        delete [] data_;
+        data_ = newArray;
+        max_size_ = cur_size_;
+    } // end if
 } // end shrink
 
 
 template <typename T>
 void Array <T>::reverse ( void ) {
-
+    T temp;
+    for (size_t i = 0; i < (cur_size_/2); i++) {
+        temp = data_[i];
+        data_[i] = data_[cur_size_ - 1 - i];
+        data_[cur_size_ - 1 - i] = temp;
+    } // end for
 } // end reverse
 
 
 template <typename T>
 Array <T> Array <T>::slice (size_t begin) const {
+    // assuming that "begin" is the zero based location of the starting element of the slice
+    size_t subArray_size = cur_size_ - begin;
+    Array <T> subArray(subArray_size); // on the stack
 
+    for (size_t i = begin; i < subArray_size; i++) {
+        subArray[i-begin] = data_[i];
+    } // end for
+
+    return subArray;
 } // end slice
 
 
 template <typename T>
 Array <T> Array <T>::slice (size_t begin, size_t end) const {
+    // assuming that "begin" and "end" is the zero based location of the starting element of the slice
+    size_t subArray_size = end - begin;
+    Array <T> subArray(subArray_size); // on the stack
 
+    for (size_t i = begin; i < subArray_size; i++) {
+        subArray[i-begin] = data_[i];
+    } // end for
+
+    return subArray;
 } // end slice

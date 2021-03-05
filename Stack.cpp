@@ -92,6 +92,7 @@ template <typename T>
 const Stack <T> & Stack <T>::operator = (const Stack & rhs)
 {
     array_ = rhs.array_;
+    return *this;
 } // end operator =
 
 //
