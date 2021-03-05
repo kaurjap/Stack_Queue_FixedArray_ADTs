@@ -17,7 +17,7 @@ Array <T>::Array (void)
     max_size_ (5)
 {
 
-}// end default constructor
+} // end default constructor
 
 //
 // Array (size_t)
@@ -112,7 +112,8 @@ T & Array <T>::operator [] (size_t index)
 template <typename T>
 const T & Array <T>::operator [] (size_t index) const
 {
-    return this[index];
+    T return_var = this[index];
+    return return_var;
 } // end operator [] for access
 
 //
