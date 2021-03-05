@@ -5,7 +5,6 @@
 // I pledge that I have neither given nor receieved any help
 // on this assignment.
 
-#include "Array.h"
 #include <stdexcept>         // for std::out_of_bounds exception
 
 //
@@ -13,36 +12,50 @@
 //
 template <typename T>
 Array <T>::Array (void)
+    : data_ (new T[5]),
+    cur_size_ (0),
+    max_size_ (5)
 {
 
-}
+}// end default constructor
 
 //
 // Array (size_t)
 //
 template <typename T>
 Array <T>::Array (size_t length)
+    : data_ (new T [length]),
+    cur_size_ (length),
+    max_size_ (length)
 {
 
-}
+} // end initialization constructor
 
 //
 // Array (size_t, char)
 //
 template <typename T>
 Array <T>::Array (size_t length, T fill)
+    : data_ (new T [length]),
+    cur_size_ (length),
+    max_size_ (length)
 {
-
-}
+    fill(fill);
+} // end initialization constructor
 
 //
 // Array (const Array &)
 //
 template <typename T>
 Array <T>::Array (const Array & array)
+    : data_ (new T [array.max_size_]),
+    cur_size_ (array.cur_size_),
+    max_size_ (array.max_size_)
 {
-
-}
+    for (size_t i = 0; i < array.cur_size_; i++) {
+        data_[i] = array.data_[i]; 
+    } // end for
+} // end copy constructor
 
 //
 // ~Array
@@ -50,8 +63,12 @@ Array <T>::Array (const Array & array)
 template <typename T>
 Array <T>::~Array (void)
 {
-
-}
+    try {
+        delete [] data_;
+    } catch (...) {
+        throw;          // IDEA: can throw a std::exception with a custom message?
+    } // end try-catch
+} // end destructor
 
 //
 // operator =
@@ -59,8 +76,22 @@ Array <T>::~Array (void)
 template <typename T>
 const Array <T> & Array <T>::operator = (const Array & rhs)
 {
-
-}
+    if (this == &rhs) {
+        return *this;
+    } // end if
+    else {
+        if (max_size_ < rhs.cur_size_) {
+            delete [] data_;
+            data_ = new T [rhs.cur_size_];
+            max_size_ = rhs.cur_size_;
+        } // end if
+        cur_size_ = rhs.cur_size_;
+        for (size_t i = 0; i < rhs.cur_size_; i++) {
+            data_[i] = rhs.data_[i];
+        } // end for
+        return *this;
+    } // end if-else
+} // end operator =
 
 //
 // operator []
@@ -68,8 +99,12 @@ const Array <T> & Array <T>::operator = (const Array & rhs)
 template <typename T>
 T & Array <T>::operator [] (size_t index)
 {
-
-}
+    if (cur_size_ <= index) {
+        throw std::out_of_range("std::out_of_range: The index passed in is greater than the size of the array.");
+    } else {
+        return data_[index];
+    } // end if-else
+} // end operator [] for mutability
 
 //
 // operator [] 
@@ -77,8 +112,8 @@ T & Array <T>::operator [] (size_t index)
 template <typename T>
 const T & Array <T>::operator [] (size_t index) const
 {
-
-}
+    return this[index];
+} // end operator [] for access
 
 //
 // get
@@ -86,8 +121,8 @@ const T & Array <T>::operator [] (size_t index) const
 template <typename T>
 T Array <T>::get (size_t index) const
 {
-
-}
+    return this[index];
+} // end get
 
 //
 // set
@@ -95,8 +130,12 @@ T Array <T>::get (size_t index) const
 template <typename T>
 void Array <T>::set (size_t index, T value)
 {
-
-}
+    if (cur_size_ <= index) {
+        throw std::out_of_range("std::out_of_range: The index passed in is greater than the size of the array.");
+    } else {
+        data_[index] = value;
+    } // end if-else
+} // end set
 
 //
 // resize
@@ -104,8 +143,23 @@ void Array <T>::set (size_t index, T value)
 template <typename T>
 void Array <T>::resize (size_t new_size)
 {
-
-}
+    if (new_size < cur_size_ || new_size < max_size_) {
+        cur_size_ = new_size;
+        // max_size and data_ remain the same, only less elements are accessible now
+    
+    } else if (new_size > max_size_) {
+        // create a new array with the bigger size
+        T * newArray = new T [new_size];
+        // copy all the existing elements to new array
+        for (size_t i = 0; i < cur_size_; i++) {
+            newArray[i] = data_[i];     // TRY: newArray->data_[i] directly, don't know if this would work since it is a pointer
+        } // end for
+        delete [] data_;
+        data_ = newArray;
+        cur_size_ = new_size;
+        max_size_ = new_size;
+    } // end if-else
+} // end resize
 
 //
 // find (char)
@@ -113,8 +167,8 @@ void Array <T>::resize (size_t new_size)
 template  <typename T>
 int Array <T>::find (T value) const
 {
-
-}
+    return find(value, 0);
+} // end find 
 
 //
 // find (char, size_t) 
@@ -122,8 +176,19 @@ int Array <T>::find (T value) const
 template <typename T>
 int Array <T>::find (T val, size_t start) const
 {
-
-}
+    int returnVal = -1;
+    if (start >= cur_size_) {
+        throw std::out_of_range("std::out_of_range: The start index is larger than the size of the array");
+    } else {
+        for (size_t i = start; i < cur_size_; i++) {
+            if (data_[i] == val) {
+                returnVal = (int) i;
+                break;
+            } // end if
+        } // end for
+    } // end if-else
+    return returnVal;
+} // end find with start
 
 //
 // operator ==
@@ -131,8 +196,23 @@ int Array <T>::find (T val, size_t start) const
 template <typename T>
 bool Array <T>::operator == (const Array & rhs) const
 {
-
-}
+    bool returnVal = true;
+    if (this == &rhs) {
+        returnVal = true;
+    } else {
+        if (cur_size_ == rhs.cur_size_) {
+            for (size_t i = 0; i < cur_size_; i++) {
+                if (data_[i] != rhs.data_[i]) {
+                    returnVal = false;
+                    break;
+                } // end if
+            } // end for
+        } else {
+            returnVal = false;
+        } // end if-else
+    } // end else
+    return returnVal;
+} // end operator == 
 
 //
 // operator !=
@@ -140,8 +220,8 @@ bool Array <T>::operator == (const Array & rhs) const
 template <typename T>
 bool Array <T>::operator != (const Array & rhs) const
 {
-
-}
+    return !((*this) == rhs);
+} // end operator !=
 
 //
 // fill
@@ -149,5 +229,7 @@ bool Array <T>::operator != (const Array & rhs) const
 template <typename T>
 void Array <T>::fill (T value)
 {
-
-}
+    for (size_t i = 0; i < cur_size_; i++) {
+        data_[i] = value;
+    } // end for
+} // end fill

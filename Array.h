@@ -186,7 +186,7 @@ public:
 
 private:
   /// Pointer to the actual data.
-  char * data_;
+  T * data_;
 
   /// Current size of the array.
   size_t cur_size_;

@@ -13,7 +13,9 @@ project (assignment2) {
   }
 
   Template_Files {
+    Array.cpp
     Fixed_Array.cpp
     Stack.cpp
+    // Queue.cpp
   }
 }
