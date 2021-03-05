@@ -24,7 +24,7 @@ Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
 {
     // CODE REDUCTION: can also call the assignment operator because same behavior
     // *this = arr;
-    
+
 	for (size_t i = 0; i < N; i++) {
         data_[i] = arr.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
     } // end for

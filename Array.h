@@ -184,6 +184,32 @@ public:
    */
   void fill (T element);
 
+   /// Shrink the array to reclaim unused space.
+  void shrink( void );
+
+  /// Reverse the contents of the array such that the first element is now
+  /// the last element and the last element is the first element.
+  void reverse ( void );
+
+  /**
+   * The slice() method returns a shallow copy of a portion of an array into
+   * a new array object selected from begin to end (end not included). The original
+   * array will not be modified.
+   *
+   * @param[in]       begin           The starting index
+   * @return          A new Array object
+   */
+  Array <T> slice (size_t begin) const;
+
+  /**
+   * @overload
+   *
+   * @param[in]       begin           The starting index
+   * @param[in]       end             The ending index
+   * @return          A new Array object
+   */
+  Array <T> slice (size_t begin, size_t end) const;
+
 private:
   /// Pointer to the actual data.
   T * data_;

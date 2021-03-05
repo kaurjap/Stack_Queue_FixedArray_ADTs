@@ -1,12 +1,46 @@
-#include <iostream>
-#include "Array.h"
+#include <iostream> 
+// #include "Array.h"
+#include "Fixed_Array.h"
 
 // function prototypes
 template <typename T>
 void print (const Array <T> & arr); // to print an array object
 
+template <typename T, size_t N>
+void print (const Fixed_Array <T, N> & arr); // to print Fixed_Array
+void testArray();
+void testFixedArray(); 
+
+
 int main (int argc, char * argv [])
 {
+    testFixedArray();
+
+    return 0;
+} // end main
+
+
+void testFixedArray() {
+    Fixed_Array <int, 5> a1;
+    Fixed_Array <int, 5> a2 (a1); // calls the copy constructor
+    Fixed_Array <int, 7> a3 (a1); // calls initialization constructor
+    Fixed_Array <int, 7> a4 (1); // fill with 1, also tests fill
+
+    print (a1);
+    print (a2);
+    print (a3);
+    print (a4);
+
+    a1 = a4; // calls assignment for N and M sized arrays
+    print (a1);
+
+    Fixed_Array <int, 7> a5;
+    a5 = a4; // calls assignment for same sized arrays
+    print (a5);
+} // end testFixedArray
+
+
+void testArray() {
     Array <int> a1;
     Array <int> a2 (5);
     Array <int> a3 (4, 1);
@@ -56,13 +90,22 @@ int main (int argc, char * argv [])
     a3.resize(8);
     a3.fill(3);
     print(a3);
+} // end testArray
 
-    return 0;
-} // end main
 
 template <typename T>
 void print (const Array <T> & arr) {
     std::cout << "\n***** PRINT *****" << std::endl;
+    for (size_t i = 0; i < arr.size(); i++) {
+            std::cout << arr.get(i) << ",";
+        } // end for
+        std::cout << "\ncurrent size: " << arr.size();
+        std::cout << "\nmaximum size: " << arr.max_size() << std::endl;
+} // end print
+
+template <typename T, size_t N>
+void print (const Fixed_Array <T, N> & arr) {
+std::cout << "\n***** PRINT *****" << std::endl;
     for (size_t i = 0; i < arr.size(); i++) {
             std::cout << arr.get(i) << ",";
         } // end for

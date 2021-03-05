@@ -19,6 +19,7 @@ Array <T>::Array (void)
 
 } // end default constructor
 
+
 //
 // Array (size_t)
 //
@@ -31,6 +32,7 @@ Array <T>::Array (size_t length)
 
 } // end initialization constructor
 
+
 //
 // Array (size_t, char)
 //
@@ -42,6 +44,7 @@ Array <T>::Array (size_t length, T fill)
 {
     this->fill (fill);          // TRY: changing the parameter name "fill" (inconsistency with using this)
 } // end initialization constructor
+
 
 //
 // Array (const Array &)
@@ -57,6 +60,7 @@ Array <T>::Array (const Array & array)
     } // end for
 } // end copy constructor
 
+
 //
 // ~Array
 //
@@ -69,6 +73,7 @@ Array <T>::~Array (void)
         throw;          // IDEA: can throw a std::exception with a custom message?
     } // end try-catch
 } // end destructor
+
 
 //
 // operator =
@@ -93,6 +98,7 @@ const Array <T> & Array <T>::operator = (const Array & rhs)
     } // end if-else
 } // end operator =
 
+
 //
 // operator []
 //
@@ -106,6 +112,7 @@ T & Array <T>::operator [] (size_t index)
     } // end if-else
 } // end operator [] for mutability
 
+
 //
 // operator [] 
 //
@@ -115,6 +122,7 @@ const T & Array <T>::operator [] (size_t index) const
     T return_var = this[index];
     return return_var;
 } // end operator [] for access
+
 
 //
 // get
@@ -129,6 +137,7 @@ T Array <T>::get (size_t index) const
     } // end if-else
 } // end get
 
+
 //
 // set
 //
@@ -141,6 +150,7 @@ void Array <T>::set (size_t index, T value)
         data_[index] = value;
     } // end if-else
 } // end set
+
 
 //
 // resize
@@ -166,6 +176,7 @@ void Array <T>::resize (size_t new_size)
     } // end if-else
 } // end resize
 
+
 //
 // find (char)
 //
@@ -174,6 +185,7 @@ int Array <T>::find (T value) const
 {
     return find(value, 0);
 } // end find 
+
 
 //
 // find (char, size_t) 
@@ -194,6 +206,7 @@ int Array <T>::find (T val, size_t start) const
     } // end if-else
     return returnVal;
 } // end find with start
+
 
 //
 // operator ==
@@ -219,6 +232,7 @@ bool Array <T>::operator == (const Array & rhs) const
     return returnVal;
 } // end operator == 
 
+
 //
 // operator !=
 //
@@ -227,6 +241,7 @@ bool Array <T>::operator != (const Array & rhs) const
 {
     return !((*this) == rhs);
 } // end operator !=
+
 
 //
 // fill
@@ -238,3 +253,27 @@ void Array <T>::fill (T value)
         data_[i] = value;
     } // end for
 } // end fill
+
+
+template <typename T>
+void Array <T>::shrink (void) {
+
+} // end shrink
+
+
+template <typename T>
+void Array <T>::reverse ( void ) {
+
+} // end reverse
+
+
+template <typename T>
+Array <T> Array <T>::slice (size_t begin) const {
+
+} // end slice
+
+
+template <typename T>
+Array <T> Array <T>::slice (size_t begin, size_t end) const {
+
+} // end slice
