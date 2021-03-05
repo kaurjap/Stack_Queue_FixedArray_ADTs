@@ -26,7 +26,7 @@ Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
     // *this = arr;
 
 	for (size_t i = 0; i < N; i++) {
-        data_[i] = arr.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
+        this[i] = arr.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
     } // end for
 } // end copy constructor (same sized arrays)
 
@@ -86,7 +86,7 @@ const Fixed_Array <T, N> & Fixed_Array <T, N>::operator = (const Fixed_Array <T,
 	for (size_t i = 0; i < N; i++) {
         data_[i] = rhs.data_[i];            // POTENTIAL ERROR: data_ private member variable of Array and not Fixed_Array
     } // end for
-} // end operator = (same as copy constuctor)
+} // end operator = (s ame as copy constuctor)
 
 //
 // operator =
