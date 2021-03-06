@@ -169,6 +169,8 @@ void print (Stack <T> stack) {
     std::cout << "size: " << stack.size() << std::endl;
     for (size_t i = 0; i < stack.size(); i++) {
         std::cout << stack.top() << std::endl;
-        stack.pop();
+        if (i == stack.size() - 1) {
+		stack.pop();
+	} // end if
     } // end for
 } // end print

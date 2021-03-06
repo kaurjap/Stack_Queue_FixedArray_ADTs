@@ -51,7 +51,7 @@ class Queue
         
             const char * what() 
             {
-                return "empty_exception: The stack is empty.";
+                return "empty_exception: The queue is empty.";
             } // end what()
             
         };
