@@ -1,6 +1,6 @@
 #include <iostream> 
-// #include "Array.h"
 #include "Fixed_Array.h"
+
 
 // function prototypes
 template <typename T>
@@ -10,11 +10,14 @@ template <typename T, size_t N>
 void print (const Fixed_Array <T, N> & arr); // to print Fixed_Array
 void testArray();
 void testFixedArray(); 
+// void testStack();
 
 
 int main (int argc, char * argv [])
 {
+    testArray();
     testFixedArray();
+
 
     return 0;
 } // end main

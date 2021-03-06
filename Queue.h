@@ -1,7 +1,22 @@
 // -*- C++ -*-
 
+//==============================================================================
+/** 
+ * @file       Queue.h
+ *
+ * Honor Pledge:
+ *
+ * I pledge that I have neither given nor received any help
+ * on this assignment.
+ */ 
+//==============================================================================
+
+
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
+
+#include "Array.h"
+#include <exception> // for empty-exception
 
 /**
  * @class Queue
@@ -62,8 +77,8 @@ class Queue
         /**
          * Remove the element at the front of the list
          * 
-         * @return          Element at the front of the list
-         * @exception       empty_exception The queue is empty
+         * @return         Element at the front of the list
+         * @exception      empty_exception The queue is empty
          */ 
         T dequeue (void);
 

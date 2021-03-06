@@ -73,7 +73,7 @@ template <typename T>
 void Stack <T>::pop (void)
 {
     if (is_empty()) {
-        throw empty_exception;
+        throw empty_exception ("empty_exception: The stack is empty.");
     } else {
         // move the array elements to the left by one
         for (size_t i = 0; i < size() - 1; i++) {
