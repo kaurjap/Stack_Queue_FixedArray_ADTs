@@ -16,6 +16,6 @@ project (assignment2) {
     Array.cpp
     Fixed_Array.cpp
     Stack.cpp
-    // Queue.cpp
+    Queue.cpp
   }
 }

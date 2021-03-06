@@ -1,5 +1,7 @@
 #include <iostream> 
 #include "Fixed_Array.h"
+#include "Stack.h"
+#include "Queue.h"
 
 
 // function prototypes
@@ -8,19 +10,56 @@ void print (const Array <T> & arr); // to print an array object
 
 template <typename T, size_t N>
 void print (const Fixed_Array <T, N> & arr); // to print Fixed_Array
+
+template <typename T>
+void print (const Stack <T> & stack);
+
 void testArray();
 void testFixedArray(); 
-// void testStack();
+void testStack();
 
 
 int main (int argc, char * argv [])
 {
-    testArray();
-    testFixedArray();
-
+    // testArray();
+    // testFixedArray();
+    testStack();
 
     return 0;
 } // end main
+
+
+void testStack() {
+    Stack <char> stack;
+    print (stack);
+
+    if (stack.is_empty()) {
+        std::cout << "true where true\n";
+    } 
+    stack.push ('a');
+    stack.push ('b');
+    stack.push ('c');
+    if (stack.is_empty() == false) {
+        std::cout << "false where false\n";
+    }
+    print (stack);
+    stack.pop ();
+    print (stack);
+
+    Stack <char> s2 (stack);
+    print (s2);
+    
+    Stack <char> s3;
+    print (s3);
+    s3 = stack;
+    print (s3);
+
+    stack.clear();
+    s2.clear();
+    s3.clear();
+
+    print (stack);
+} // end testStack
 
 
 void testFixedArray() {
@@ -113,6 +152,7 @@ void print (const Array <T> & arr) {
         std::cout << "\nmaximum size: " << arr.max_size() << std::endl;
 } // end print
 
+
 template <typename T, size_t N>
 void print (const Fixed_Array <T, N> & arr) {
 std::cout << "\n***** PRINT *****" << std::endl;
@@ -121,4 +161,14 @@ std::cout << "\n***** PRINT *****" << std::endl;
         } // end for
         std::cout << "\ncurrent size: " << arr.size();
         std::cout << "\nmaximum size: " << arr.max_size() << std::endl;
+} // end print
+
+template <typename T>
+void print (const Stack <T> & stack) {
+    std::cout << "\n------- STACK ---------\n";
+    std::cout << "size: " << stack.size() << std::endl;
+    for (size_t i = 0; i < size(); i++) {
+        std::cout << stack.top() << std::endl;
+        stack.pop();
+    } // end for
 } // end print
