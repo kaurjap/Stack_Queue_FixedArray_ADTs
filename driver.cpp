@@ -31,7 +31,7 @@ int main (int argc, char * argv [])
 
 void testStack() {
     Stack <char> stack;
-    print (stack);
+    // print (stack); // throws exception
 
     if (stack.is_empty()) {
         std::cout << "true where true\n";
@@ -58,7 +58,7 @@ void testStack() {
     s2.clear();
     s3.clear();
 
-    print (stack);
+    // print (stack); // throws exception
 } // end testStack
 
 
@@ -124,7 +124,7 @@ void testArray() {
     index = a4.find(9,1); // -1
     std::cout << "index: " << index << std::endl;
 
-    /* exceptions
+    /* exceptions, catch the following
     index = a4.find(5, 4);
     std::cout << "index: " << index << std::endl;
     a4[5];
@@ -167,7 +167,7 @@ template <typename T>
 void print (const Stack <T> & stack) {
     std::cout << "\n------- STACK ---------\n";
     std::cout << "size: " << stack.size() << std::endl;
-    for (size_t i = 0; i < size(); i++) {
+    for (size_t i = 0; i < stack.size(); i++) {
         std::cout << stack.top() << std::endl;
         stack.pop();
     } // end for

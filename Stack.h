@@ -1,4 +1,4 @@
-   // -*- C++ -*-
+// -*- C++ -*-
 // $Id: Stack.h 380 2010-02-08 05:10:33Z hillj $
 
 //==============================================================================
@@ -47,6 +47,13 @@ public:
      */
     empty_exception (const char * msg)
       : std::exception (msg) { }
+
+      const char * what() 
+      {
+        return "empty_exception: The stack is empty.";
+      } // end what()
+
+    
   };
 
   /// Default constructor.

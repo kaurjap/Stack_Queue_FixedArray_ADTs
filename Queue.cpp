@@ -13,8 +13,8 @@ Queue <T>::Queue (void)
 
 
 template <typename T>
-Queue <T>::Queue (const Queue & queue) 
-    : array_ (new Array <T*> (queue.size()))
+Queue <T>::Queue (const Queue & queue)
+    : array_ (new Array <T*> (queue.size())) 
 {
     array_ = queue.array_;
 } // end copy constructor
@@ -35,6 +35,7 @@ template <typename T>
 const Queue <T> & Queue <T>::operator = (const Queue & rhs)
 {
     array_ = rhs.array_;
+    return *this;
 } // end operator =
 
 
@@ -46,7 +47,7 @@ void Queue <T>::enqueue (T element)
     array_[size()] = element;
 } // end enqueue
 
-
+template <typename T>
 T Queue <T>::dequeue (void)
 {
     T returnVal = array_[0];

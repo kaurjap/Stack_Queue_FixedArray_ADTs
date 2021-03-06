@@ -20,7 +20,7 @@ bool Queue <T>::is_empty (void) const
 
 template <typename T>
 inline
-size_t Queue <T>::size (void)
+size_t Queue <T>::size (void) const
 {
     return array_->size();
 } // end size
