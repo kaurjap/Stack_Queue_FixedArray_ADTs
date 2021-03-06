@@ -69,4 +69,4 @@ template <typename T>
 void Queue <T>::clear (void)
 {
     array_->resize(0);
-} // end clearc
+} // end clear
