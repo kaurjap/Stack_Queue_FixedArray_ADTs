@@ -22,13 +22,13 @@ template <typename T>
 Stack <T>::Stack (const Stack & stack)
     : array_ (new Array <T> (stack.size()))
 {
-    // since the stack is basically the array_, its cur_size_, and max_size_
+    // since the stack is basically the array_, array_'s cur_size_ and max_size_
     // just assigning the passed in stack's array to this stack's array
 
     // CODE REDUCTION: can also just call the assignment operator --> seems more expensive 
     // *this = stack;
 
-    // i am also able to access stack's private members directly
+    // also able to access stack's private members directly
     array_ = stack.array_;
 } // end copy constructor
 
