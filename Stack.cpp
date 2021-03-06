@@ -10,7 +10,7 @@
 //
 template <typename T>
 Stack <T>::Stack (void)
-    : array_ (new Array <T*> ())
+    : array_ (new Array <T> ())
 {
 
 } // end default constructor
@@ -20,7 +20,7 @@ Stack <T>::Stack (void)
 //
 template <typename T>
 Stack <T>::Stack (const Stack & stack)
-    : array_ (new Array <T*> (stack.size()))
+    : array_ (new Array <T> (stack.size()))
 {
     // since the stack is basically the array_, its cur_size_, and max_size_
     // just assigning the passed in stack's array to this stack's array
@@ -73,7 +73,8 @@ template <typename T>
 void Stack <T>::pop (void)
 {
     if (is_empty()) {
-        throw empty_exception ("empty_exception: The stack is empty.");
+        empty_exception ex;
+        throw ex;
     } else {
         // move the array elements to the left by one
         for (size_t i = 0; i < size() - 1; i++) {

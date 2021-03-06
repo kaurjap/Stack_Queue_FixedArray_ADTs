@@ -46,8 +46,14 @@ class Queue
              *
              * @param[in]      msg         Error message.
              */
-            empty_exception (const char * msg)
-            : std::exception (msg) { }
+            //empty_exception (const char * msg)
+            //: std::exception (msg) { }
+        
+            const char * what() 
+            {
+                return "empty_exception: The stack is empty.";
+            } // end what()
+            
         };
 
         /// Default constructor
@@ -103,7 +109,7 @@ class Queue
 
     private:
         // aggregation
-        Array <T*> array_;
+        Array <T> * array_;
 };
 
 #include "Queue.inl"

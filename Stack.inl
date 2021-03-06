@@ -23,7 +23,7 @@ template <typename T>
 inline
 T Stack <T>::top (void) const
 {
-    return array_[0]; // or, array_->get(0);
+    return array_->get(0);
 } // end top
 
 //

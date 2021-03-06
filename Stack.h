@@ -45,15 +45,13 @@ public:
      *
      * @param[in]      msg         Error message.
      */
-    empty_exception (const char * msg)
-      : std::exception (msg) { }
+    //empty_exception (const char * msg)
+    //  : std::exception (msg) { }
 
       const char * what() 
       {
         return "empty_exception: The stack is empty.";
       } // end what()
-
-    
   };
 
   /// Default constructor.
@@ -118,7 +116,7 @@ public:
 private:
 
   // aggregation
-  Array <T*> array_;  // pointer that points to the data on the stack
+  Array <T> * array_;  // pointer that points to the data on the stack
 
 };
 

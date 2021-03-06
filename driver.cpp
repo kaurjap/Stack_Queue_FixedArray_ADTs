@@ -12,7 +12,7 @@ template <typename T, size_t N>
 void print (const Fixed_Array <T, N> & arr); // to print Fixed_Array
 
 template <typename T>
-void print (const Stack <T> & stack);
+void print (Stack <T> stack);
 
 void testArray();
 void testFixedArray(); 
@@ -164,7 +164,7 @@ std::cout << "\n***** PRINT *****" << std::endl;
 } // end print
 
 template <typename T>
-void print (const Stack <T> & stack) {
+void print (Stack <T> stack) {
     std::cout << "\n------- STACK ---------\n";
     std::cout << "size: " << stack.size() << std::endl;
     for (size_t i = 0; i < stack.size(); i++) {

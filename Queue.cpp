@@ -6,7 +6,7 @@
 
 template <typename T>
 Queue <T>::Queue (void)
-    : array_ (new Array <T*> ())
+    : array_ (new Array <T> ())
 {
 
 } // end default constructor
@@ -14,7 +14,7 @@ Queue <T>::Queue (void)
 
 template <typename T>
 Queue <T>::Queue (const Queue & queue)
-    : array_ (new Array <T*> (queue.size())) 
+    : array_ (new Array <T> (queue.size())) 
 {
     array_ = queue.array_;
 } // end copy constructor
@@ -52,7 +52,8 @@ T Queue <T>::dequeue (void)
 {
     T returnVal = array_[0];
     if (is_empty()) {
-        throw empty_exception ("empty_exception: The queue is empty.");
+        empty_exception ex;
+        throw ex;
     } // end if
     else {
         for (size_t i = 0; i < size() - 1; i++) {
