@@ -120,13 +120,14 @@ void testArray() {
     index = a4.find(9,1); // -1
     std::cout << "index: " << index << std::endl;
 
-    /* exceptions, catch the following
+    // exceptions, catch the following
+    
     index = a4.find(5, 4);
     std::cout << "index: " << index << std::endl;
     a4[5];
     a4[6] = 3;
     a4.set(4, 6); // throw exception
-    */
+    //
 
     a2.resize(3);
     a2.fill(2);
