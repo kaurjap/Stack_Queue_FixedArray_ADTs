@@ -40,6 +40,7 @@ public:
     empty_exception (void)
       : std::exception () { }
 
+    // this method gives an error 
     /**
      * Initializing constructor.
      *
