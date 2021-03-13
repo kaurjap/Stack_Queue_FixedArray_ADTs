@@ -13,7 +13,7 @@ template <typename T, size_t N>
 void print (const Fixed_Array <T, N> & arr); // to print Fixed_Array
 
 template <typename T>
-void print (Stack <T> stack);
+void print (Stack <T> stack); // passed by value, so the actual stack values don't change
 
 void testArray();
 void testFixedArray(); 
@@ -22,9 +22,9 @@ void testStack();
 
 int main (int argc, char * argv [])
 {
-    testArray();
+    // testArray();
     // testFixedArray();
-    // testStack();
+    testStack();
 
     return 0;
 } // end main
@@ -35,23 +35,33 @@ void testStack() {
     // print (stack); // throws exception
 
     if (stack.is_empty()) {
-        std::cout << "true where true\n";
+        std::cout << "true when stack is empty\n";
     } 
+
+    try {
+	std::cout << stack.top ();
+    } catch (...) {
+	std::cout << ex.what() << std::endl;
+    }
+
     stack.push ('a');
     stack.push ('b');
     stack.push ('c');
     if (stack.is_empty() == false) {
-        std::cout << "false where false\n";
+        std::cout << "false when stack isn't empty\n";
     }
-    print (stack);
-    stack.pop ();
     print (stack);
 
     Stack <char> s2 (stack);
     print (s2);
     
-    Stack <char> s3;
-    print (s3);
+    Stack <char> s3;  // size 0
+    try {
+    	print (s3);
+    } catch (...) {
+	std::cout << ex.what() << std::endl;
+    }
+
     s3 = stack;
     print (s3);
 
@@ -66,10 +76,10 @@ void testStack() {
 void testFixedArray() {
     Fixed_Array <int, 5> a1;
     a1.fill(1);
-    //print(a1);
+
 
     Fixed_Array <int, 5> a2 (a1); // calls the copy constructor
-    //print (a2);
+
 
     Fixed_Array <int, 7> a4 (2); // fill with 1, also tests fill
 
@@ -82,6 +92,16 @@ void testFixedArray() {
     a5 = a4; // calls assignment for same sized arrays
     print (a5);
     
+    if (a5 == a4 && a1 == a2) {
+	std::cout << "true where true" << std::endl;
+    }
+
+    Fixed_Array <int, 8> a6 (6); // fill with 6
+    print (a6);
+    if (a6 != a5 && a6 != a2) {
+	std::cout << "false where false" << std::endl;
+    } 
+
 } // end testFixedArray
 
 
@@ -124,25 +144,25 @@ void testArray() {
     try {
         index = a4.find(5, 4);
     } catch (const std::out_of_range & ex) {
-        ex.what();
+        std::cout << ex.what() << std::endl;
     }
 
     try {
         a4[5];
     } catch (const std::out_of_range & ex) {
-        ex.what();
+        std::cout << ex.what() << std::endl;
     }
 
     try {
         a4[6] = 3;
     } catch (const std::out_of_range & ex) {
-        ex.what();
+        std::cout << ex.what() << std::endl;
     }
 
     try {
         a4.set(4, 6);
     } catch (const std::out_of_range & ex) {
-        ex.what();
+        std::cout << ex.what() << std::endl;
     }
     
 
