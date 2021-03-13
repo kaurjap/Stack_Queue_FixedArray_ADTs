@@ -40,7 +40,7 @@ void testStack() {
 
     try {
 	std::cout << stack.top ();
-    } catch (...) {
+    } catch (const std::exception & ex) {
 	std::cout << ex.what() << std::endl;
     }
 
@@ -58,7 +58,7 @@ void testStack() {
     Stack <char> s3;  // size 0
     try {
     	print (s3);
-    } catch (...) {
+    } catch (const std::exception & ex) {
 	std::cout << ex.what() << std::endl;
     }
 
