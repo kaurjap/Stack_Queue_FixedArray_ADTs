@@ -35,6 +35,24 @@ public:
   /// Type definition of the element type.
   typedef T type;
 
+  /// Default constructor.
+  Array (void);
+
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]      length        Initial size
+   */
+  Array (size_t length);
+
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]      length        Initial size
+   * @param[in]      fill          Initial value for each element
+   */
+  Array (size_t length, T fill);
+
   /**
    * Copy constructor
    *

@@ -1,8 +1,8 @@
 #include <iostream> 
 #include "Array.h"
-//#include "Fixed_Array.h"
-//#include "Stack.h"
-//#include "Queue.h"
+#include "Fixed_Array.h"
+#include "Stack.h"
+#include "Queue.h"
 
 
 // function prototypes
@@ -71,17 +71,12 @@ void testFixedArray() {
     Fixed_Array <int, 5> a2 (a1); // calls the copy constructor
     //print (a2);
 
-    Fixed_Array <int, 7> a3 (a1); // calls initialization constructor
     Fixed_Array <int, 7> a4 (2); // fill with 1, also tests fill
 
     print (a1);
     print (a2);
-    print (a3);
     print (a4);
 
-    
-    a1 = a4; // calls assignment for N and M sized arrays
-    print (a1);
 
     Fixed_Array <int, 7> a5;
     a5 = a4; // calls assignment for same sized arrays
