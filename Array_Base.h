@@ -2,7 +2,7 @@
 
 //==============================================================================
 /**
- * @file       Array.h
+ * @file       Array_Base.h
  *
  * Honor Pledge:
  *
@@ -15,14 +15,16 @@
 #define _ARRAY_BASE_H_
 
 #include <cstring>          // for size_t definition
+#include <stdexcept>        // for std::out_of_bounds exception
+
 
 /**
- * @class Array
+ * @class Array_Base
  *
  * Basic implementation of a standard array class for chars.
  */
 template <typename T>
-class Array
+class Array_Base
 {
 public:
   /// Type definition of the element type.
@@ -46,6 +48,13 @@ public:
    */
   Array_Base (size_t length, T fill);
 
+
+  /**
+   * Copy constructor
+   *
+   * @param[in]     arr         The source array.
+   */
+  Array_Base (const Array_Base & arr);
 
   /// Destructor.
   ~Array_Base (void);
@@ -135,7 +144,7 @@ public:
    * @retval          true                 Left side is equal to right side
    * @retval          false                Left side is not equal to right side
    */
-  bool operator == (const Array & rhs) const;
+  bool operator == (const Array_Base <T> & rhs) const;
 
   /**
    * Test the array for inequality.
@@ -144,7 +153,7 @@ public:
    * @retval          true                 Left side is not equal to right side
    * @retval          false                Left size is equal to right side
    */
-  bool operator != (const Array & rhs) const;
+  bool operator != (const Array_Base <T> & rhs) const;
 
   /**
    * Fill the contents of the array.

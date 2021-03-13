@@ -13,6 +13,7 @@ project (assignment2) {
   }
 
   Template_Files {
+    Array_Base.cpp
     Array.cpp
     Fixed_Array.cpp
     Stack.cpp

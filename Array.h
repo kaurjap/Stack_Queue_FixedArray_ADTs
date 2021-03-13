@@ -29,7 +29,7 @@
  * 
  */
 template <typename T>
-class Array: public Array_Base <T>
+class Array : public Array_Base <T>
 {
 public:
   /// Type definition of the element type.
@@ -68,7 +68,7 @@ public:
   void resize (size_t new_size);
 
   /// Shrink the array to reclaim unused space.
-  void shrink( void );
+  void shrink ( void );
 
 };
 

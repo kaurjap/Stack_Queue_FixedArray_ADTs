@@ -1,7 +1,8 @@
 #include <iostream> 
-#include "Fixed_Array.h"
-#include "Stack.h"
-#include "Queue.h"
+#include "Array.h"
+//#include "Fixed_Array.h"
+//#include "Stack.h"
+//#include "Queue.h"
 
 
 // function prototypes
@@ -21,9 +22,9 @@ void testStack();
 
 int main (int argc, char * argv [])
 {
-    // testArray();
+    testArray();
     // testFixedArray();
-    testStack();
+    // testStack();
 
     return 0;
 } // end main

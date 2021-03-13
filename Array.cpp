@@ -10,14 +10,10 @@
 // Array (const Array &)
 //
 template <typename T>
-Array <T>::Array (const Array & array)
-    : data_ (new T [array.max_size_]),
-    cur_size_ (array.cur_size_),
-    max_size_ (array.max_size_)
+Array <T>::Array (const Array <T> & array)
+    : Array_Base <T> (array)        // calling the base copy constructor
 {
-    for (size_t i = 0; i < array.cur_size_; i++) {
-        data_[i] = array.data_[i]; 
-    } // end for
+    
 } // end copy constructor
 
 
@@ -35,15 +31,15 @@ Array <T>::~Array (void)
 // operator =
 //
 template <typename T>
-const Array <T> & Array <T>::operator = (const Array & rhs)
+const Array <T> & Array <T>::operator = (const Array <T> & rhs)
 {
     if (this == &rhs) {
         return *this;
     } // end if
     else {
         if (max_size_ < rhs.cur_size_) {
-            delete [] data_;
-            data_ = new T [rhs.cur_size_];
+            delete [] this->data_;
+            this->data_ = new T [rhs.cur_size_];
             max_size_ = rhs.cur_size_;
         } // end if
         cur_size_ = rhs.cur_size_;

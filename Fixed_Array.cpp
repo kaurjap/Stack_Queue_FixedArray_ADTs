@@ -34,9 +34,9 @@ Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
 //
 template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (T fill)
-    : Array_Base <T> (N)
+    : Array_Base <T> (N, fill)
 {
-    this->fill (fill);              // POTENTIAL ERROR: does "this" strictly refer to Fixed_Array methods?
+    
 } // end initialization constructor (with fill)
 
 

@@ -5,14 +5,13 @@
 // I pledge that I have neither given nor receieved any help
 // on this assignment.
 
-#include <stdexcept>  // for std::out_of_bounds exception
 
 //
 // Array
 //
 template <typename T>
 Array_Base <T>::Array_Base (void)
-    : data_ (new T[5]),
+    : data_ (new T [5]),
     cur_size_ (0),
     max_size_ (5)
 {
@@ -44,6 +43,21 @@ Array_Base <T>::Array_Base (size_t length, T fill)
 {
     this->fill (fill);          // TRY: changing the parameter name "fill" (inconsistency with using "this" because didn't use it anywhere else)
 } // end initialization constructor
+
+
+//
+// Array (const Array &)
+//
+template <typename T>
+Array_Base <T>::Array_Base (const Array_Base <T> & array)
+    : data_ (new T [array.max_size_]),
+    cur_size_ (array.cur_size_),
+    max_size_ (array.max_size_)
+{
+    for (size_t i = 0; i < array.cur_size_; i++) {
+        data_[i] = array.data_[i]; 
+    } // end for
+} // end copy constructor
 
 
 //
@@ -151,7 +165,7 @@ int Array_Base <T>::find (T val, size_t start) const
 // operator ==
 //
 template <typename T>
-bool Array_Base <T>::operator == (const Array & rhs) const
+bool Array_Base <T>::operator == (const Array_Base <T> & rhs) const
 {
     bool returnVal = true;
     if (this == &rhs) {
@@ -176,7 +190,7 @@ bool Array_Base <T>::operator == (const Array & rhs) const
 // operator !=
 //
 template <typename T>
-bool Array_Base <T>::operator != (const Array & rhs) const
+bool Array_Base <T>::operator != (const Array_Base <T> & rhs) const
 {
     return !((*this) == rhs);
 } // end operator !=
