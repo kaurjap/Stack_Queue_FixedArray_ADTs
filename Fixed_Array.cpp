@@ -10,62 +10,35 @@
 //
 template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (void)
-    : Array <T> (N)
+    : Array_Base <T> (N)
 {
 
 } // end default constructor 
+
 
 //
 // Fixed_Array
 //
 template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
-    : Array <T> (N)
+    : Array_Base <T> (N)
 {
-    // CODE REDUCTION: can also call the assignment operator because same behavior
-    // *this = arr;
-
 	for (size_t i = 0; i < N; i++) {
-        (*this)[i] = arr[i];         
+        data_[i] = arr.data_[i];     
     } // end for
 } // end copy constructor (same sized arrays)
 
-//
-// Fixed_Array
-// we'll copy the first N elements from the M sized array being set equal to
-// N>M vs. M>N?
-// use case:
-//      Fixed_Array <int, 5> a1;
-//      Fixed_Array <int, 7> a2 (a1);   N > M --> changes the first 5 elements of a1 into itself
-//      Fixed_Array <int, 4> a3 (a1);   N < M --> copies the first 4 elements of a1 into itself
-//
-template <typename T, size_t N>
-template <size_t M>
-Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, M> & arr)
-    : Array <T> (N)
-{
-    // CODE REDUCTION: can also call the assignment operator because same behavior
-    // *this = rhs;
-
-    // only copy the first N elements (or first M elements depending on which is smaller) from the M sized array (or N sized array) 
-    size_t upper_bound = N;
-    if (N > M) {
-        upper_bound = M;
-    } // end if
-	for (size_t i = 0; i < upper_bound; i++) {
-        (*this)[i] = arr[i];          
-    } // end for
-} // end initialization constructor (different sized arrays)
 
 //
 // Fixed_Array
 //
 template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (T fill)
-    : Array <T> (N)
+    : Array_Base <T> (N)
 {
-    this->fill (fill);
+    this->fill (fill);              // POTENTIAL ERROR: does "this" strictly refer to Fixed_Array methods?
 } // end initialization constructor (with fill)
+
 
 //
 // ~Fixed_Array
@@ -77,6 +50,7 @@ Fixed_Array <T, N>::~Fixed_Array (void)
     // automatically calls the base's destructor
 } // end destructor
 
+
 //
 // operator =
 //
@@ -84,25 +58,7 @@ template <typename T, size_t N>
 const Fixed_Array <T, N> & Fixed_Array <T, N>::operator = (const Fixed_Array <T, N> & rhs)
 {
 	for (size_t i = 0; i < N; i++) {
-        (*this)[i] = rhs[i];           
+        data_[i] = rhs.data_[i];           
     } // end for
     return *this;
 } // end operator = (same as copy constuctor)
-
-//
-// operator =
-//
-template <typename T, size_t N>
-template <size_t M>
-const Fixed_Array <T, N> & Fixed_Array <T, N>::operator = (const Fixed_Array <T, M> & rhs)
-{
-    // only copy the first N elements (or first M elements depending on which is smaller) from the M sized array (or N sized array) 
-    size_t upper_bound = N;
-    if (N > M) {
-        upper_bound = M;
-    } // end if
-	for (size_t i = 0; i < upper_bound; i++) {
-        (*this)[i] = rhs[i];          
-    } // end for
-    return *this;
-} // end operator = (same as different size initialization)

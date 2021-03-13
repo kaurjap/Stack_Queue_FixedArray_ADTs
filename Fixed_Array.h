@@ -8,17 +8,17 @@
 #ifndef _CS507_FIXED_ARRAY_H_
 #define _CS507_FIXED_ARRAY_H_
 
-#include "Array.h"
+#include "Array_Base.h"
 
 /**
  * @class Fixed_Array
  *
  * Implementation of a fixed size array, i.e., one that is not
- * resizeable. It is derived from Array so it can inherit of 
- * the Array class's methods.
+ * resizeable. It is derived from Array_Base so it can inherit all of 
+ * the Array_Base class's methods.
  */
 template <typename T, size_t N>
-class Fixed_Array : public Array <T>
+class Fixed_Array : public Array_Base <T>
 {
 public:
   /// Default constructor.
@@ -30,15 +30,6 @@ public:
 	 * @param[in]      arr        Source array
 	 */
   Fixed_Array (const Fixed_Array <T, N> & arr);
-	
-  /**
-   * Initializing constructor. The source array can be of any size
-   * as long as they are of the same type.
-   *
-   * @param[in]      arr        Source array
-   */
-  template <size_t M>
-  Fixed_Array (const Fixed_Array <T, M> & arr);
 
   /**
    * Initializing constructor. Fills the contents of the 
@@ -58,13 +49,6 @@ public:
    */
   const Fixed_Array & operator = (const Fixed_Array <T, N> & rhs);
 
-  /**
-   * Assignment operator
-   *
-   * @param[in]      rhs        Right-hand side of operator.
-   */
-  template <size_t M>
-  const Fixed_Array & operator = (const Fixed_Array <T, M> & rhs);
 };
 
 // include the inline files
