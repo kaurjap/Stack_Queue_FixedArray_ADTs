@@ -121,13 +121,30 @@ void testArray() {
     std::cout << "index: " << index << std::endl;
 
     // exceptions, catch the following
+    try {
+        index = a4.find(5, 4);
+    } catch (const std::out_of_range & ex) {
+        ex.what();
+    }
+
+    try {
+        a4[5];
+    } catch (const std::out_of_range & ex) {
+        ex.what();
+    }
+
+    try {
+        a4[6] = 3;
+    } catch (const std::out_of_range & ex) {
+        ex.what();
+    }
+
+    try {
+        a4.set(4, 6);
+    } catch (const std::out_of_range & ex) {
+        ex.what();
+    }
     
-    index = a4.find(5, 4);
-    std::cout << "index: " << index << std::endl;
-    a4[5];
-    a4[6] = 3;
-    a4.set(4, 6); // throw exception
-    //
 
     a2.resize(3);
     a2.fill(2);
