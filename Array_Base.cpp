@@ -94,11 +94,17 @@ T & Array_Base <T>::operator [] (size_t index)
 template <typename T>
 const T & Array_Base <T>::operator [] (size_t index) const
 {
+    /*
     if (cur_size_ <= index) {
         throw std::out_of_range("std::out_of_range: The index passed in is greater than the size of the array.");
     } else {
         return data_[index];
     } // end if-else
+    */
+
+   // reuse of code
+   //return this->operator [] (index);
+   return this[index];
 } // end operator [] for access
 
 
@@ -136,7 +142,12 @@ void Array_Base <T>::set (size_t index, T value)
 template  <typename T>
 int Array_Base <T>::find (T value) const
 {
-    return find(value, 0);
+    try {
+        return find(value, 0);
+    } catch (const std::out_of_range & ex) {
+        // since this method doesn't take in an index, the exception means just return -1
+        return -1;
+    } // end try-catch
 } // end find 
 
 
@@ -226,14 +237,8 @@ void Array_Base <T>::reverse ( void ) {
 //
 template <typename T>
 Array_Base <T> Array_Base <T>::slice (size_t begin) const {
-    // assuming that "begin" is the zero based location of the starting element of the slice
-    size_t subArray_size = cur_size_ - begin;
-    Array_Base <T> subArray(subArray_size); // on the stack
-
-    for (size_t i = begin; i < subArray_size; i++) {
-        subArray[i-begin] = data_[i];
-    } // end for
-
+    // same as the slice method with begin and end index, with end being equal to the size of the array
+    Array_Base <T> subArray = slice (begin, cur_size_-1);
     return subArray;
 } // end slice
 
@@ -243,13 +248,17 @@ Array_Base <T> Array_Base <T>::slice (size_t begin) const {
 //
 template <typename T>
 Array_Base <T> Array_Base <T>::slice (size_t begin, size_t end) const {
-    // assuming that "begin" and "end" is the zero based location of the starting element of the slice
-    size_t subArray_size = end - begin;
-    Array_Base <T> subArray(subArray_size); // on the stack
+    if (begin > cur_size_ - 1 || end > cur_size_ - 1) {
+        throw std::out_of_range("std::out_of_range: Either or both indexes passed in are greater than the size of the array.");
+    } else {
+        // assuming that "begin" and "end" is the zero based location of the starting element of the slice
+        size_t subArray_size = end - begin;
+        Array_Base <T> subArray(subArray_size); // on the stack
 
-    for (size_t i = begin; i < subArray_size; i++) {
-        subArray[i-begin] = data_[i];
-    } // end for
+        for (size_t i = begin; i < subArray_size; i++) {
+            subArray[i-begin] = data_[i];
+        } // end for
 
-    return subArray;
+        return subArray;
+    } // end if-else
 } // end slice

@@ -22,9 +22,9 @@ void testStack();
 
 int main (int argc, char * argv [])
 {
-    // testArray();
+    testArray();
     // testFixedArray();
-    testStack();
+    // testStack();
 
     return 0;
 } // end main
@@ -111,6 +111,9 @@ void testArray() {
     Array <int> a3 (4, 1);
     Array <int> a4 (a3);
 
+    int i = a1.find (4);
+    std::cout << "i :" << i << std::endl;
+    
     print (a1);
     print(a2);
     print (a3);
