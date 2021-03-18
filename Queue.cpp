@@ -16,6 +16,9 @@ template <typename T>
 Queue <T>::Queue (const Queue & queue)
     : array_ (new Array <T> (queue.size())) 
 {
+    // COMMENT Your code will eventually crash since queue will be sharing
+    // the same array allocation.
+    
     array_ = queue.array_;
 } // end copy constructor
 
@@ -34,6 +37,10 @@ Queue <T>::~Queue (void)
 template <typename T>
 const Queue <T> & Queue <T>::operator = (const Queue & rhs)
 {
+    // COMMENT Always check for self assignment.
+    
+    // COMMENT Your code will eventually crash since queue will be sharing
+    // the same array allocation.
     array_ = rhs.array_;
     return *this;
 } // end operator =
@@ -56,6 +63,12 @@ T Queue <T>::dequeue (void)
         throw ex;
     } // end if
     else {
+        // COMMENT This design is OK, but it is not the best design. This will be
+        // a very expensive array to use if you are dequeing a lot of elements. This
+        // is because you are copying N elements each time you dequeue 1 element.
+        // Instead, you only want to copy element when necessary. Come up with a better
+        // design that is not as expensive for the client to use.
+        
         for (size_t i = 0; i < size() - 1; i++) {
             array_[i] = array_[i+1];
         } // end for
