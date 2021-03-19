@@ -49,6 +49,13 @@ Stack <T>::~Stack (void)
 template <typename T>
 void Stack <T>::push (T element)
 {
+    // COMMENT You current design of the stack is copying each element
+    // over on location each time your push a new element onto the stack.
+    // Unfortunately, this is an expensive operation—--especially if you
+    // have a large number of elements on the stack. Improve your design
+    // so that you are not copying each element every time you push a new
+    // element onto the stack.
+    
     // if the array- has space to insert another element, then insert it
     // otherwise, allocate space and then insert the element
     // resize method does just that
@@ -73,6 +80,13 @@ void Stack <T>::pop (void)
         empty_exception ex;
         throw ex;
     } else {
+        // COMMENT You current design of the stack is copying each element
+        // over on location each time your pop a new element from the stack.
+        // Unfortunately, this is an expensive operation—--especially if you
+        // have a large number of elements on the stack. Improve your design
+        // so that you are not copying each element every time you pop a new
+        // element from the stack.
+        
         // move the array elements to the left by one
         for (size_t i = 0; i < size() - 1; i++) {
             array_[i] = array_[i+1];
@@ -89,6 +103,10 @@ void Stack <T>::pop (void)
 template <typename T>
 const Stack <T> & Stack <T>::operator = (const Stack & rhs)
 {
+    // COMMENT Always check for self-assignment first before continuing.
+
+    // COMMENT Your code will eventually crash since stacks will be sharing
+    // the same array allocation.
     array_ = rhs.array_;
     return *this;
 } // end operator =

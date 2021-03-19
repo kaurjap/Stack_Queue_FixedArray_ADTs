@@ -115,7 +115,9 @@ public:
   void clear (void);
 
 private:
-
+    // COMMENT There is no need to allocate the array on the heap. Always try to
+    // allocate on the stack to reduce the complexity of your code.
+    
   // aggregation
   Array <T> * array_;  // pointer that points to the data on the stack
 
