@@ -48,14 +48,16 @@ void Stack <T>::push (T element)
     // have a large number of elements on the stack. Improve your design
     // so that you are not copying each element every time you push a new
     // element onto the stack.
-    // SOLUTION Instead of copying each element, I used the existing method of the array
-    // to reverse the contents of the array first, then resize it and add the 
-    // element to the end, and then reverse again.
+    // SOLUTION This method was initially a misunderstanding on my part 
+    // about the push method. I mis-imagined the top of the stack to be 
+    // represented by the beginning of the array. Meaning, that instead of 
+    // adding to the top of the stack, I was adding to the bottom of the stack.
+    // So, I resolved this issue by adding an element to the end of the array 
+    // representing the stack.
 
-    array_.reverse ();
-    array_.resize (array_.size() + 1);
-    array_ [array_.size () - 1] = element;
-    array_.reverse ();
+    array_.resize (array.size() + 1);
+    // size of the array, and hence the stack, are now incremented by 1
+    array_[array.size()-1] = element; 
 } // end push
 
 //
@@ -74,13 +76,14 @@ void Stack <T>::pop (void)
         // have a large number of elements on the stack. Improve your design
         // so that you are not copying each element every time you pop a new
         // element from the stack.
-        // SOLUTION Similar to the push method, I resolved this by reversing 
-        // the contents of the array, then deleting the last element by resizing
-        // the array to one size less, and then reversing the contents again.
-        
-        array_.reverse ();
-        array_.resize (array_.size() - 1);
-        array_.reverse();
+        // SOLUTION This method was initially a misunderstanding on my part 
+        // about the pop method. Instead of deleting the lastly added element 
+        // from the stack, which is its top (following the LIFO access structure),
+        //  I was deleting the first added element from the stack. Hence, Dr. Hill,
+        // I resolved this issue by deleting the last element from the stack's array,
+        // basically by resizing the stack to one size less.
+
+        array_.resize (array.size() - 1);
     } // end if-else
 } // end pop
 
