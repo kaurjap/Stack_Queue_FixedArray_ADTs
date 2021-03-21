@@ -13,7 +13,7 @@ template <typename T>
 inline
 size_t Stack <T>::size (void) const
 {
-    return array_->size();
+    return array_.size ();
 } // end size
 
 //
@@ -23,7 +23,7 @@ template <typename T>
 inline
 T Stack <T>::top (void) const
 {
-    return array_->get(0);
+    return array_.get (0);
 } // end top
 
 //
@@ -33,7 +33,7 @@ template <typename T>
 inline
 bool Stack <T>::is_empty (void) const
 {
-    if (size() == 0) {
+    if (array_.size () == 0) {
         return true;
     } else {
         return false;
