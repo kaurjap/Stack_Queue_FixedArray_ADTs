@@ -46,8 +46,8 @@ public:
      *
      * @param[in]      msg         Error message.
      */
-      empty_exception (const char * msg)
-        : std::exception (msg) { }
+      //empty_exception (const char * msg)
+      //  : std::exception (msg) { }
 
       const char * what() 
       {

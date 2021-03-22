@@ -55,9 +55,9 @@ void Stack <T>::push (T element)
     // So, I resolved this issue by adding an element to the end of the array 
     // representing the stack.
 
-    array_.resize (array.size() + 1);
+    array_.resize (array_.size() + 1);
     // size of the array, and hence the stack, are now incremented by 1
-    array_[array.size()-1] = element; 
+    array_[array_.size() - 1] = element; 
 } // end push
 
 //
@@ -83,7 +83,7 @@ void Stack <T>::pop (void)
         // I resolved this issue by deleting the last element from the stack's array,
         // basically by resizing the stack to one size less.
 
-        array_.resize (array.size() - 1);
+        array_.resize (array_.size() - 1);
     } // end if-else
 } // end pop
 

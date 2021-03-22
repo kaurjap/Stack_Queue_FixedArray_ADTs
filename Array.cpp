@@ -92,17 +92,15 @@ void Array <T>::resize (size_t new_size)
 {
     if (new_size < this->cur_size_ || new_size < this->max_size_) {
         this->cur_size_ = new_size;
-        // max_size and data_ remain the same, only less elements are accessible now
-    
     } else if (new_size > this->max_size_) {
         // create a new array with the bigger size
-        T * newArray = new T [new_size];
+        T * new_array = new T [new_size];
         // copy all the existing elements to new array
         for (size_t i = 0; i < this->cur_size_; i++) {
-            newArray[i] = this->data_[i];     // TRY: newArray->data_[i] directly, don't know if this would work since it is a pointer
+            new_array[i] = this->data_[i];
         } // end for
         delete [] this->data_;
-        this->data_ = newArray;
+        this->data_ = new_array;
         this->cur_size_ = new_size;
         this->max_size_ = new_size;
     } // end if-else
@@ -115,12 +113,12 @@ void Array <T>::resize (size_t new_size)
 template <typename T>
 void Array <T>::shrink (void) {
     if (this->cur_size_ < this->max_size_) {
-        T * newArray = new T [this->cur_size_];
+        T * new_array = new T [this->cur_size_];
         for (size_t i = 0; i < this->cur_size_; i++) {
-            newArray[i] = this->data_[i];
+            new_array[i] = this->data_[i];
         } // end for
         delete [] this->data_;
-        this->data_ = newArray;
+        this->data_ = new_array;
         this->max_size_ = this->cur_size_;
     } // end if
 } // end shrink

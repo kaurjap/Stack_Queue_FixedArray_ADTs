@@ -63,7 +63,7 @@ void Queue <T>::enqueue (T element)
 template <typename T>
 T Queue <T>::dequeue (void)
 {
-    T returnVal = array_[0];
+    T first_element = array_[0];
     if (is_empty()) {
         empty_exception ex;
         throw ex;
@@ -82,7 +82,7 @@ T Queue <T>::dequeue (void)
         array_.resize (array_.size () - 1);
         array_.reverse ();
     } // end else
-    return returnVal;
+    return first_element;
 } // end dequeue
 
 

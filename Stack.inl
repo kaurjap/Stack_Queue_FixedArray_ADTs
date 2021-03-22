@@ -23,7 +23,12 @@ template <typename T>
 inline
 T Stack <T>::top (void) const
 {
-    return array_.get (0);
+    if (is_empty()) {
+        empty_exception ex;
+        throw ex;
+    } else {
+        return array_.get (array_.size() - 1); // return the lastly added element    
+    } // end if-else
 } // end top
 
 //

@@ -22,8 +22,8 @@ void testStack();
 
 int main (int argc, char * argv [])
 {
-    testArray();
-    // testFixedArray();
+    // testArray();
+    testFixedArray();
     // testStack();
 
     return 0;
@@ -72,38 +72,48 @@ void testStack() {
     // print (stack); // throws exception
 } // end testStack
 
-
 void testFixedArray() {
+
+    std::cout << "====== constructors, fill method =====\n";
     Fixed_Array <int, 5> a1;
     a1.fill(1);
-
-
     Fixed_Array <int, 5> a2 (a1); // calls the copy constructor
+    Fixed_Array <int, 7> a4 (2); // fill constructor, also tests fill
+    Fixed_Array <int, 7> a5; // empty
+    Fixed_Array <int, 8> a6 (6); // fill with 6
+    Fixed_Array <int, 2> a7; // empty
 
-
-    Fixed_Array <int, 7> a4 (2); // fill with 1, also tests fill
 
     print (a1);
     print (a2);
     print (a4);
-
-
-    Fixed_Array <int, 7> a5;
+    
+    std::cout << "\n====  assignment & equality and inequality operators =====\n";
     a5 = a4; // calls assignment for same sized arrays
     print (a5);
-    
     if (a5 == a4 && a1 == a2) {
-	std::cout << "true where true" << std::endl;
+	    std::cout << "true where true" << std::endl;
     }
-
-    Fixed_Array <int, 8> a6 (6); // fill with 6
     print (a6);
     if (a6 != a5 && a6 != a2) {
-	std::cout << "false where false" << std::endl;
+	    std::cout << "false where false" << std::endl;
     } 
 
-} // end testFixedArray
+    std::cout << "\n======= find methods =====\n";
+    std::cout << "\n" << a1.find (1); // returns 0
+    std::cout << "\n" << a1.find (2); // returns -1
+    std::cout << "\n" << a1.find (1, 4); // returns 4
 
+    std::cout << "\n======= access methods and [] operators=======\n";
+    a1[0] = 9;
+    std::cout << "\n" << a1.get (0); // returns 9
+    a1.set(8, 1);
+    std::cout << "\n" << a1[1]; // returns 8
+    print (a1);
+    a1.reverse ();
+    print (a1);
+
+} // end testFixedArray
 
 void testArray() {
     Array <int> a1;
@@ -115,7 +125,7 @@ void testArray() {
     std::cout << "i :" << i << std::endl;
     
     print (a1);
-    print(a2);
+    print (a2);
     print (a3);
     print (a4);
 
@@ -176,9 +186,22 @@ void testArray() {
     a3.resize(8);
     a3.fill(3);
     print(a3);
+
+    std::cout << "===== Reverse =====\n";
+    a3.resize (7);
+    // test reverse
+    a3[0] = 1;
+    a3.set(1, 2);
+    a3[2] = 3;
+    a3[3] = 4;
+    a3[5] = 6;
+    print (a3);
+    a3.reverse ();
+    print (a3);
 } // end testArray
 
 
+// print methods
 template <typename T>
 void print (const Array <T> & arr) {
     std::cout << "\n***** PRINT *****" << std::endl;
@@ -207,7 +230,7 @@ void print (Stack <T> stack) {
     for (size_t i = 0; i < stack.size(); i++) {
         std::cout << stack.top() << std::endl;
         if (i == stack.size() - 1) {
-		stack.pop();
-	} // end if
+		    stack.pop();
+	    } // end if
     } // end for
 } // end print
