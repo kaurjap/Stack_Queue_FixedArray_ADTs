@@ -49,7 +49,7 @@ class Queue
             //empty_exception (const char * msg)
             //: std::exception (msg) { }
         
-            const char * what() 
+            const char * what () const throw ()
             {
                 return "empty_exception: The queue is empty.";
             } // end what()
@@ -108,8 +108,12 @@ class Queue
 
 
     private:
+    // COMMENT There is no need to allocate the array on the heap. Always try to
+    // allocate on the stack to reduce the complexity of your code.
+    // SOLUTION Dr. Hill, I resolved this comment by allocating the array on the stack.
+
         // aggregation
-        Array <T> * array_;
+        Array <T> array_;
 };
 
 #include "Queue.inl"

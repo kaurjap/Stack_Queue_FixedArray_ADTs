@@ -14,8 +14,8 @@ Array_Base <T>::Array_Base (void)
     : data_ (new T [5]),
     cur_size_ (0),
     max_size_ (5)
-{
-
+{  
+    // nothing needs to be done
 } // end default constructor
 
 
@@ -28,7 +28,7 @@ Array_Base <T>::Array_Base (size_t length)
     cur_size_ (length),
     max_size_ (length)
 {
-
+    // nothing needs to be done
 } // end initialization constructor
 
 
@@ -36,12 +36,10 @@ Array_Base <T>::Array_Base (size_t length)
 // Array (size_t, char)
 //
 template <typename T>
-Array_Base <T>::Array_Base (size_t length, T fill)
-    : data_ (new T [length]),
-    cur_size_ (length),
-    max_size_ (length)
+Array_Base <T>::Array_Base (size_t length, T element)
+    : Array_Base <T> (length)
 {
-    this->fill (fill);          // TRY: changing the parameter name "fill" (inconsistency with using "this" because didn't use it anywhere else)
+    fill (element);
 } // end initialization constructor
 
 
@@ -50,9 +48,7 @@ Array_Base <T>::Array_Base (size_t length, T fill)
 //
 template <typename T>
 Array_Base <T>::Array_Base (const Array_Base <T> & array)
-    : data_ (new T [array.max_size_]),
-    cur_size_ (array.cur_size_),
-    max_size_ (array.max_size_)
+    : Array_Base <T> (array.cur_size_)
 {
     for (size_t i = 0; i < array.cur_size_; i++) {
         data_[i] = array.data_[i]; 
@@ -69,7 +65,7 @@ Array_Base <T>::~Array_Base (void)
     try {
         delete [] data_;
     } catch (...) {
-        throw;          // IDEA: can throw a std::exception with a custom message?
+        throw;
     } // end try-catch
 } // end destructor
 
@@ -94,16 +90,7 @@ T & Array_Base <T>::operator [] (size_t index)
 template <typename T>
 const T & Array_Base <T>::operator [] (size_t index) const
 {
-    /*
-    if (cur_size_ <= index) {
-        throw std::out_of_range("std::out_of_range: The index passed in is greater than the size of the array.");
-    } else {
-        return data_[index];
-    } // end if-else
-    */
-
-   // reuse of code
-   //return this->operator [] (index);
+    // reuse of code -- mobility
    return this[index];
 } // end operator [] for access
 

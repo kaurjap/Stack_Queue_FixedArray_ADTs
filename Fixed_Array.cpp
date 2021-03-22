@@ -12,7 +12,7 @@ template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (void)
     : Array_Base <T> (N)
 {
-
+    // nothing needs to be done
 } // end default constructor 
 
 
@@ -21,11 +21,9 @@ Fixed_Array <T, N>::Fixed_Array (void)
 //
 template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
-    : Array_Base <T> (N)
+    : Array_Base <T> (arr) // call the base copy constructor
 {
-	for (size_t i = 0; i < N; i++) {
-        this->data_[i] = arr.data_[i];     
-    } // end for
+    // nothing needs to be done
 } // end copy constructor (same sized arrays)
 
 
@@ -36,7 +34,7 @@ template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (T fill)
     : Array_Base <T> (N, fill)
 {
-    
+    // nothing needs to be done
 } // end initialization constructor (with fill)
 
 
@@ -58,7 +56,7 @@ template <typename T, size_t N>
 const Fixed_Array <T, N> & Fixed_Array <T, N>::operator = (const Fixed_Array <T, N> & rhs)
 {
 	for (size_t i = 0; i < N; i++) {
-        this->data_[i] = rhs.data_[i];           
+        this->data_[i] = rhs.data_[i];
     } // end for
     return *this;
 } // end operator = (same as copy constuctor)

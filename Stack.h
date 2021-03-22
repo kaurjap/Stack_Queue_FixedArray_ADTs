@@ -40,16 +40,17 @@ public:
     empty_exception (void)
       : std::exception () { }
 
-    // this method gives an error 
+    // this method gives an error saying that no constructor that takes in a const char * msg is defined for std::exception (line 50)
+    // didn't delete the code because it was pre-defined in the file
     /**
      * Initializing constructor.
      *
      * @param[in]      msg         Error message.
      */
-    //empty_exception (const char * msg)
-    //  : std::exception (msg) { }
+      //empty_exception (const char * msg)
+      //  : std::exception (msg) { }
 
-      const char * what() 
+      const char * what() const throw ()
       {
         return "empty_exception: The stack is empty.";
       } // end what()
@@ -115,9 +116,15 @@ public:
   void clear (void);
 
 private:
+    // COMMENT There is no need to allocate the array on the heap. Always try to
+    // allocate on the stack to reduce the complexity of your code.
+    // SOLUTION Dr. Hill, I resolved this comment by allocating the array on the stack. I included
+    // it on the heap initially because I thought if it would be on stack, then since the object
+    // will destroy itself once it is out of a particular scope, it would affect the return values.
+    // However, I understand how that is not true and return values are not affected. 
 
   // aggregation
-  Array <T> * array_;  // pointer that points to the data on the stack
+  Array <T> array_;  // pointer that points to the data on the stack
 
 };
 
