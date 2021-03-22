@@ -15,9 +15,13 @@ void print (const Fixed_Array <T, N> & arr); // to print Fixed_Array
 template <typename T>
 void print (Stack <T> stack); // passed by value, so the actual stack values don't change
 
+template <typename T>
+void print (Queue <T> queue);
+
 void testArray();
 void testFixedArray(); 
 void testStack();
+void testQueue();
 
 
 int main (int argc, char * argv [])
@@ -29,6 +33,41 @@ int main (int argc, char * argv [])
     return 0;
 } // end main
 
+void testQueue () {
+    Queue <char> q1;
+    q1.enqueue('a');
+    q1.enqueue('b');
+    q1.enqueue('c');
+    q1.enqueue('d');
+    print (q1);
+
+    q1.dequeue ();
+    print (q1);
+
+    //copy constructor
+    Queue <char> q2 (q1);
+    print (q2);
+
+    Queue <char> q3;
+    try {
+        q3.dequeue ();
+    } catch (std::exception & ex) {
+        std::cout << ex.what() << std::endl;
+    } // end try-catch
+
+    q3 = q1;
+    print (q3);
+
+    q1.clear();
+    q2.clear();
+    q3.clear();
+
+    if (q1.is_empty() && q2.is_empty()) {
+        if (q3.is_empty()) {
+            std::cout << "all queues cleared";
+        }
+    }
+} // end testQueue
 
 void testStack() {
     Stack <char> stack;
@@ -231,3 +270,13 @@ void print (Stack <T> stack) {
         stack.pop();
     } // end for
 } // end print
+
+template <typename T>
+void print (Queue <T> queue) {
+    std::cout << "---- QUEUE --------";
+    size_t size = queue.size();
+    for (size_t i = 0; i < size; ++i) {
+        char c = queue.dequeue ();
+        std::cout << c << ",";
+    } // end for
+} // end print Queue
