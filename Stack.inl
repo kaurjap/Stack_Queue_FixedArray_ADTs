@@ -27,7 +27,8 @@ T Stack <T>::top (void) const
         empty_exception ex;
         throw ex;
     } else {
-        return array_.get (array_.size() - 1); // return the lastly added element    
+        // return the lastly added element  
+        return array_.get (array_.size() - 1);  
     } // end if-else
 } // end top
 

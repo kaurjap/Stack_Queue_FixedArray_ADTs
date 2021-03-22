@@ -14,8 +14,8 @@ Array_Base <T>::Array_Base (void)
     : data_ (new T [5]),
     cur_size_ (0),
     max_size_ (5)
-{
-
+{  
+    // nothing needs to be done
 } // end default constructor
 
 
@@ -28,7 +28,7 @@ Array_Base <T>::Array_Base (size_t length)
     cur_size_ (length),
     max_size_ (length)
 {
-
+    // nothing needs to be done
 } // end initialization constructor
 
 
@@ -36,10 +36,10 @@ Array_Base <T>::Array_Base (size_t length)
 // Array (size_t, char)
 //
 template <typename T>
-Array_Base <T>::Array_Base (size_t length, T fill)
+Array_Base <T>::Array_Base (size_t length, T element)
     : Array_Base <T> (length)
 {
-    this->fill (fill);          // TRY: changing the parameter name "fill" (inconsistency with using "this" because didn't use it anywhere else)
+    fill (element);
 } // end initialization constructor
 
 
@@ -65,7 +65,7 @@ Array_Base <T>::~Array_Base (void)
     try {
         delete [] data_;
     } catch (...) {
-        throw;          // IDEA: can throw a std::exception with a custom message?
+        throw;
     } // end try-catch
 } // end destructor
 

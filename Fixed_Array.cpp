@@ -12,7 +12,7 @@ template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (void)
     : Array_Base <T> (N)
 {
-
+    // nothing needs to be done
 } // end default constructor 
 
 
@@ -23,7 +23,7 @@ template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (const Fixed_Array <T, N> & arr)
     : Array_Base <T> (arr) // call the base copy constructor
 {
-	
+    // nothing needs to be done
 } // end copy constructor (same sized arrays)
 
 
@@ -34,7 +34,7 @@ template <typename T, size_t N>
 Fixed_Array <T, N>::Fixed_Array (T fill)
     : Array_Base <T> (N, fill)
 {
-    
+    // nothing needs to be done
 } // end initialization constructor (with fill)
 
 

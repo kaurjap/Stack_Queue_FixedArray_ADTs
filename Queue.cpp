@@ -75,8 +75,10 @@ T Queue <T>::dequeue (void)
         // Instead, you only want to copy element when necessary. Come up with a better
         // design that is not as expensive for the client to use.
         // SOLUTION Dr. Hill, instead of copying each element over to dequeue one element
-        // each time, I used the reverse method of the array to delete the element using 
-        // the resize method and then reversing back the contents again.
+        // each time, I used the existing reverse method of the array to delete the element using 
+        // the resize method and then reversing back the contents again. However, it is not
+        // any better in terms of performance, now that I think about it, because the reverse 
+        // method also makes copies of elements to move them around. It just makes the design look cleaner.
 
         array_.reverse ();
         array_.resize (array_.size () - 1);
