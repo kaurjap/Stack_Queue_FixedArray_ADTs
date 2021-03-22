@@ -40,7 +40,8 @@ public:
     empty_exception (void)
       : std::exception () { }
 
-    // this method gives an error 
+    // this method gives an error saying that no constructor that takes in a const char * msg is defined for std::exception (line 50)
+    // didn't delete the code because it was pre-defined in the file
     /**
      * Initializing constructor.
      *
@@ -49,7 +50,7 @@ public:
       //empty_exception (const char * msg)
       //  : std::exception (msg) { }
 
-      const char * what() 
+      const char * what() const throw ()
       {
         return "empty_exception: The stack is empty.";
       } // end what()

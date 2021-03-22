@@ -23,8 +23,8 @@ void testStack();
 int main (int argc, char * argv [])
 {
     // testArray();
-    testFixedArray();
-    // testStack();
+    // testFixedArray();
+    testStack();
 
     return 0;
 } // end main
@@ -32,16 +32,14 @@ int main (int argc, char * argv [])
 
 void testStack() {
     Stack <char> stack;
-    // print (stack); // throws exception
-
     if (stack.is_empty()) {
         std::cout << "true when stack is empty\n";
     } 
 
     try {
-	std::cout << stack.top ();
+	    std::cout << stack.top (); // throws empty exception
     } catch (const std::exception & ex) {
-	std::cout << ex.what() << std::endl;
+	    std::cout << ex.what() << std::endl;
     }
 
     stack.push ('a');
@@ -50,30 +48,22 @@ void testStack() {
     if (stack.is_empty() == false) {
         std::cout << "false when stack isn't empty\n";
     }
-    print (stack);
+    print (stack); // a,b,c
+    std::cout << "top: " << stack.top() << std::endl; // returns c
 
     Stack <char> s2 (stack);
     print (s2);
     
     Stack <char> s3;  // size 0
-    try {
-    	print (s3);
-    } catch (const std::exception & ex) {
-	std::cout << ex.what() << std::endl;
-    }
-
     s3 = stack;
     print (s3);
 
     stack.clear();
     s2.clear();
     s3.clear();
-
-    // print (stack); // throws exception
 } // end testStack
 
 void testFixedArray() {
-
     std::cout << "====== constructors, fill method =====\n";
     Fixed_Array <int, 5> a1;
     a1.fill(1);
@@ -112,7 +102,6 @@ void testFixedArray() {
     print (a1);
     a1.reverse ();
     print (a1);
-
 } // end testFixedArray
 
 void testArray() {
@@ -229,8 +218,6 @@ void print (Stack <T> stack) {
     std::cout << "size: " << stack.size() << std::endl;
     for (size_t i = 0; i < stack.size(); i++) {
         std::cout << stack.top() << std::endl;
-        if (i == stack.size() - 1) {
-		    stack.pop();
-	    } // end if
+        stack.pop();
     } // end for
 } // end print
