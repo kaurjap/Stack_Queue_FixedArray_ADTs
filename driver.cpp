@@ -107,7 +107,7 @@ void testFixedArray() {
     std::cout << "\n======= access methods and [] operators=======\n";
     a1[0] = 9;
     std::cout << "\n" << a1.get (0); // returns 9
-    a1.set(8, 1);
+    a1.set(1, 8);
     std::cout << "\n" << a1[1]; // returns 8
     print (a1);
     a1.reverse ();
