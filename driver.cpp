@@ -26,9 +26,9 @@ void testQueue();
 
 int main (int argc, char * argv [])
 {
-    // testArray();
-    // testFixedArray();
-    // testStack();
+    testArray();
+    testFixedArray();
+    testStack();
     testQueue();
     return 0;
 } // end main
