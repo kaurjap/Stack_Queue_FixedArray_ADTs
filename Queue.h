@@ -49,7 +49,7 @@ class Queue
             //empty_exception (const char * msg)
             //: std::exception (msg) { }
         
-            const char * what() 
+            const char * what () const throw ()
             {
                 return "empty_exception: The queue is empty.";
             } // end what()

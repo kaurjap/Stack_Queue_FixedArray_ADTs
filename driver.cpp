@@ -24,8 +24,8 @@ int main (int argc, char * argv [])
 {
     // testArray();
     // testFixedArray();
-    testStack();
-
+    // testStack();
+    testQueue();
     return 0;
 } // end main
 
@@ -61,6 +61,15 @@ void testStack() {
     stack.clear();
     s2.clear();
     s3.clear();
+
+    if (s2.is_empty()) {
+        std::cout << "empty";
+    }
+    try {
+        s2.pop();
+    } catch (const std::exception & ex) {
+        std::cout << ex.what();
+    }
 } // end testStack
 
 void testFixedArray() {
@@ -215,8 +224,9 @@ std::cout << "\n***** PRINT *****" << std::endl;
 template <typename T>
 void print (Stack <T> stack) {
     std::cout << "\n------- STACK ---------\n";
+    size_t size = stack.size();
     std::cout << "size: " << stack.size() << std::endl;
-    for (size_t i = 0; i < stack.size(); i++) {
+    for (size_t i = 0; i < size; ++i) {
         std::cout << stack.top() << std::endl;
         stack.pop();
     } // end for
