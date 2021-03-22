@@ -273,10 +273,11 @@ void print (Stack <T> stack) {
 
 template <typename T>
 void print (Queue <T> queue) {
-    std::cout << "---- QUEUE --------";
+    std::cout << "\n---- QUEUE --------\n";
     size_t size = queue.size();
     for (size_t i = 0; i < size; ++i) {
         char c = queue.dequeue ();
         std::cout << c << ",";
     } // end for
+    std::cout << std::endl;
 } // end print Queue

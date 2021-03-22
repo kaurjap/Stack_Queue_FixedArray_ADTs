@@ -63,12 +63,12 @@ void Queue <T>::enqueue (T element)
 template <typename T>
 T Queue <T>::dequeue (void)
 {
-    T first_element = array_[0];
     if (is_empty()) {
         empty_exception ex;
         throw ex;
     } // end if
     else {
+        T first_element = array_[0];
         // COMMENT This design is OK, but it is not the best design. This will be
         // a very expensive array to use if you are dequeing a lot of elements. This
         // is because you are copying N elements each time you dequeue 1 element.
@@ -81,8 +81,8 @@ T Queue <T>::dequeue (void)
         array_.reverse ();
         array_.resize (array_.size () - 1);
         array_.reverse ();
+        return first_element;
     } // end else
-    return first_element;
 } // end dequeue
 
 
